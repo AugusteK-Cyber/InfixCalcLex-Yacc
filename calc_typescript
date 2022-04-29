@@ -1,0 +1,125 @@
+Script started on 2021-11-03 22:35:29-04:00 [TERM="xterm" TTY="/dev/pts/19" COLUMNS="86" LINES="43"]
+[akiendr1@linux2 HW4] exitcalcmake clean
+rm -f *.o lex.yy.c *.tab.*  calc *.output
+[akiendr1@linux2 HW4] make clean[23Gexit[Kcalcmake
+yacc -d -v calc.y
+cc    -c -o y.tab.o y.tab.c
+[01m[Kcalc.y:160:1:[m[K [01;35m[Kwarning: [m[Kreturn type defaults to ‘[01m[Kint[m[K’ [[01;35m[K-Wimplicit-int[m[K]
+  160 | [01;35m[Kmain[m[K()
+      | [01;35m[K^~~~[m[K
+lex calc.l
+cc    -c -o lex.yy.o lex.yy.c
+[01m[Kcalc.l:[m[K In function ‘[01m[Kyylex[m[K’:
+[01m[Kcalc.l:34:22:[m[K [01;35m[Kwarning: [m[Kimplicit declaration of function ‘[01m[Ksymlook[m[K’; did you mean ‘[01m[Ksymlink[m[K’? [[01;35m[K-Wimplicit-function-declaration[m[K]
+   34 | {A}{AD}*             [01;35m[K       [m[K        {struct symtab *sp = symlook(yytext); yylval.symp = sp; return NAME;}
+      |                      [01;35m[K^~~~~~~[m[K
+      |                      [32m[Ksymlink[m[K
+[01m[Kcalc.l:34:22:[m[K [01;35m[Kwarning: [m[Kinitialization of ‘[01m[Kstruct symtab *[m[K’ from ‘[01m[Kint[m[K’ makes pointer from integer without a cast [[01;35m[K-Wint-conversion[m[K]
+cc -o calc y.tab.o lex.yy.o -lm 
+[akiendr1@linux2 HW4] make clean[23Gexit[Kcalc
+331 Calculator
+(type ? for help and . to exit)
+
+>> ?
+Enter an expression in infix notation followed by a newline.
+Operators include +, -, * and =.  Defined functions include
+sqrt, exp and log.  You can assign a variable using the =
+operator. Type . to exit.  Syntax errors will terminate the
+program, so be careful.
+
+>> = true 1
+1
+
+>> = g false 0
+0
+
+>> + 1 2
+3
+
+>> + + 1 2 3
+6
+
+>> +1    1 + 2 3
+6
+
+>> ==  + + 1 2 3  + 1 + 2 3
+1
+
+>> + * 2 3 4
+10
+
+>> * + 2 3 4
+20
+
+>> + 2 * 3 4
+14
+
+>> = 1 a 100
+100
+
+>> = b a
+100
+
+>> = a + a 1
+101
+
+>> > a 100
+1
+
+>> not true
+0
+
+>> not false
+1
+
+>> no  t not true
+1
+
+>> not < a 101
+1
+
+>> and 1 0
+0
+
+>> and 1 1
+1
+
+>> and > a 100 > a b
+1
+
+>> or true false
+1
+
+>> or false or false or false true
+1
+
+>> (or false (or false (  or false true)))
+1
+
+>> (or (or ) (or false fale se) false) true)
+1
+
+>> or > a b > b a
+1
+
+>> and > a 100 or > a b > b a
+1
+
+>> (and (> a 100) (or (> a b) (> b a)))
+1
+
+>> if true 100 200
+100
+
+>> if false 100 200
+200
+
+>> if false     == 100 + 99 1 ~1 ~2
+-1
+
+>> .
+Exiting 331 calc
+[akiendr1@linux2 HW4] exit
+exit
+
+Script done on 2021-11-03 22:43:33-04:00 [COMMAND_EXIT_CODE="0"]
